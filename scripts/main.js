@@ -44,11 +44,18 @@ class Stack {
       this.count++;
       return this.stack;
     }
-    /*
+    
     pop(){
-        let claves = Stack.
-    }*/
-  
+        let claves = Object.keys(this.stack);
+        let lenclaves = claves.length;
+        let element = this.stack[lenclaves - 1];
+        delete this.stack[lenclaves -1];
+        this.count--;
+        return element;
+    }
+    print() {
+        console.log(this.stack);
+      }
   }
   Stack.prototype.toString = function (){
     return this.stack;
@@ -56,9 +63,59 @@ class Stack {
   
   //Ahora el programador hara uso de la pila
   const myStack = new Stack();
-  myStack.push(6);
-  myStack.push(8);
-  console.log(myStack);
+  console.log(myStack.push(6));
+  console.log(myStack.push(8));
+  console.log(myStack.push(9));
+  myStack.print();
+  console.log(myStack.pop());
+  myStack.print();
+  
 /*
   var arr = [];
-  console.log(arr);*/
+  console.log(arr);
+  class Stack {
+    constructor() {
+      this.stack = {};
+      this.count = 0;
+    }
+  
+    push(element) {
+      this.stack[this.count] = element;
+      this.count++;
+      return this.stack;
+    }
+  
+    pop() {
+      this.count--;
+      const element = this.stack[this.count];
+      delete this.stack[this.count];
+      return element;
+    }
+  
+    peek() {
+      return this.stack[this.count - 1];
+    }
+  
+    size() {
+      return this.count;
+    }
+  
+    print() {
+      console.log(this.stack);
+    }
+  }
+  
+  const stack = new Stack();
+  console.log(stack.size()); // 0
+  console.log(stack.push('John Cena')); // { '0': 'John Cena' }
+  console.log(stack.size()); // 1
+  console.log(stack.peek()); // John Cena
+  console.log(stack.push('The Rock')); // { '0': 'John Cena', '1': 'The Rock' }
+  console.log(stack.size()); // 2
+  stack.print(); // { '0': 'John Cena', '1': 'The Rock' }
+  console.log(stack.peek()); // The Rock
+  console.log(stack.pop()); // The Rock
+  stack.print(); // { '0': 'John Cena' }
+  console.log(stack.size()); // 1
+  console.log(stack.peek()); // John Cena
+  */
