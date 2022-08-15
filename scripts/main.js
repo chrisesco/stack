@@ -64,6 +64,10 @@ class Stack {
             return element;
         }
     }
+    peek(){
+        let nextTop = this.top;
+        return this.stack[nextTop--];
+    } 
     print() {
         console.log(this.stack);
       }
@@ -76,6 +80,8 @@ class Stack {
   const myStack = new Stack();
   console.log(myStack.push(6));
   console.log(myStack.push(8));
+  console.log(myStack.peek());
+  myStack.print()
   console.log(myStack.push(9));
   myStack.print();
   console.log(myStack.pop());
