@@ -32,26 +32,37 @@ peek(): Muestra el ultimo de la pila sin sacarlo
 */
 
 class Stack {
-    constructor() { // En el constructor no hay elementos 
-                 //porque puedo declarar la pila al principio sin los elementos
+    constructor() { 
       this.stack = {};
-      this.count = 0;
+      this.top = -1;
     }
-    //{key:value,key:value,...}
+    
+    isEmpty(){
+        if (this.top === -1) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     push(element) {
-      this.stack[this.count] = element;
-                 //{0:1}
-      this.count++;
+      this.top++;
+      this.stack[this.top] = element;
       return this.stack;
     }
     
     pop(){
-        let claves = Object.keys(this.stack);
-        let lenclaves = claves.length;
-        let element = this.stack[lenclaves - 1];
-        delete this.stack[lenclaves -1];
-        this.count--;
-        return element;
+        if (this.isEmpty()){
+            throw "Underflow"
+        }
+        else{
+            let claves = Object.keys(this.stack);
+            let lenclaves = claves.length;
+            let element = this.stack[lenclaves - 1];
+            delete this.stack[lenclaves -1];
+            this.top--;
+            return element;
+        }
     }
     print() {
         console.log(this.stack);
@@ -61,12 +72,15 @@ class Stack {
     return this.stack;
   }
   
-  //Ahora el programador hara uso de la pila
+  //Now the developer will use the stack in his code
   const myStack = new Stack();
   console.log(myStack.push(6));
   console.log(myStack.push(8));
   console.log(myStack.push(9));
   myStack.print();
+  console.log(myStack.pop());
+  console.log(myStack.pop());
+  console.log(myStack.pop());
   console.log(myStack.pop());
   myStack.print();
   
